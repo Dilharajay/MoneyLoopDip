@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# Django
+*.log
+*.pot
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+.env
+.env.*
+
+# Django Migrations
+**/migrations/*.py
+!**/migrations/__init__.py
+**/migrations/*.pyc
+
+# PyCharm
+.idea/
+*.iml
+
+# Byte-compiled / optimized / DLL files
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Pytest
+.cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# mypy
+.mypy_cache/
+
+# pipenv
+Pipfile.lock
+
+# pytest
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode (if you ever open with it)
+.vscode/

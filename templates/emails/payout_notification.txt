@@ -1,0 +1,8 @@
+Hello,
+
+You have received a payout of ${{ amount }} from {{ group_name }}.
+
+Transaction Reference: {{ transaction_reference }}
+Date: {{ date|date:"F j, Y" }}
+
+- The MoneyLoop Team

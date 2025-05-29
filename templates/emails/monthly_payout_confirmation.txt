@@ -1,0 +1,13 @@
+Dear {{ recipient.username }},
+
+Congratulations! You have received a payout from your group.
+
+Group Name: {{ group_name }}
+Payout Amount: ${{ amount }}
+Payout Date: {{ payout_date }}
+Transaction Reference: {{ payment_reference }}
+
+Thank you for your participation and continued commitment to your group.
+
+Best regards,
+The MoneyLoop Team

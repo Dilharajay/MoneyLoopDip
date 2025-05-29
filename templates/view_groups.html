@@ -1,0 +1,41 @@
+{% extends 'dashboardBase/adminDashBoardBase.html' %}
+{% load static tailwind_tags %}
+{% block content %}
+    <!-- Welcome Section -->
+    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+        <h2 class="text-xl font-semibold text-gray-900">View Groups</h2>
+        <p class="mt-2 text-sm text-gray-600">You can manage your groups here</p>
+    </div>
+
+    <!-- View groups here -->
+    {% for group in created_groups %}
+        <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+            <h2 class="text-xl font-semibold text-gray-900">{{ group }}</h2>
+            <p class="mt-2 text-sm text-gray-600">Members in your group:</p>
+            <ol class="mt-4">
+                {% for member in group.members.all %}
+                    <li>{{ member }}</li>
+                {% endfor %}
+            </ol>
+            <div class="inline-flex mt-6 gap-x-3">
+                {% if group.is_active == False %}
+                    <form method="post" action="{% url 'delete_group' group.id %}"
+                          onsubmit="return confirmDeleteGroup()">
+                        {% csrf_token %}
+                        <button type="submit"
+                                class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Delete Group
+                        </button>
+                    </form>
+                {% endif %}
+
+                <a href="{% url 'make_contribution' group.id %}"
+                   class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Make
+                    Contribution</a>
+
+                <a href="{% url 'group_detail' group.id %}"
+                   class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Group detail</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

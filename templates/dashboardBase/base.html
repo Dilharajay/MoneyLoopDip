@@ -1,0 +1,93 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyLoop - User Dashboard</title>
+    {% tailwind_css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body class="min-h-full bg-gray-100">
+    <div class="min-h-full">
+        <nav class="bg-gray-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="shrink-0">
+                            <img class="h-6" src="{% static 'images/logo_transparent.png' %}" alt="moneyloop">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const mobileBtn = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const userBtn = document.getElementById("user-menu-button");
+        const userMenu = document.getElementById("user-menu");
+
+        mobileBtn?.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        userBtn?.addEventListener("click", () => {
+            userMenu.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!userMenu.contains(e.target) && !userBtn.contains(e.target)) {
+                userMenu.classList.add("hidden");
+            }
+        });
+    });
+
+    function showNotification(title, message, type) {
+        Swal.fire({
+            title: title,
+            text: message,
+            icon: type,
+            confirmButtonText: 'OK',
+            timer: type === 'error' ? null : 3000,  // Errors stay until dismissed
+            timerProgressBar: type !== 'error',
+            position: 'top-end',
+            showConfirmButton: type === 'error',
+            toast: true,
+            background: type === 'error' ? '#ff4444' :
+                type === 'success' ? '#00C851' :
+                    type === 'warning' ? '#ffbb33' : '#33b5e5',
+            color: '#fff'
+        });
+    }
+
+    // Automatically show Django messages
+    $(document).ready(function () {
+        {% if messages %}
+            {% for message in messages %}
+                showNotification(
+                    '{{ message.tags|title }}',
+                    '{{ message|escapejs }}',
+                    '{{ message.tags }}'
+                );
+            {% endfor %}
+        {% endif %}
+    });
+</script>
+</body>
+</html>

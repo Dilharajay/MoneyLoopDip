@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+mysqlclient = "*"
+django-debug-toolbar = "*"
+celery = "*"
+requests = "*"
+django-celery-beat = "*"
+django-browser-reload = "*"
+django = "*"
+pydevd = "*"
+django-celery-results = "*"
+redis = "*"
+pytest = "*"
+django-environ = "*"
+pip-tools = "*"
+dj-database-url = "*"
+gunicorn = "*"
+whitenoise = "*"
+django-tailwind = "==3.6.0"
+
+[dev-packages]
+pydevd = "*"
+
+[requires]
+python_version = "3.11"
+python_full_version = "3.11.0"

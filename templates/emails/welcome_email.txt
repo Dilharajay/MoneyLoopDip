@@ -1,0 +1,15 @@
+Dear {{ user.first_name }},
+
+Welcome to MoneyLoop! We are thrilled to have you join our community.
+
+As a member, you can:
+- Participate in group contributions
+- Manage your contributions and payouts
+- Connect with other members
+
+To get started, please log in to your account and explore the features available to you.
+
+If you have any questions, feel free to reach out to our support team.
+
+Best regards,
+-MoneyLoop Team

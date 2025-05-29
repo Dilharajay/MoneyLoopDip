@@ -1,0 +1,161 @@
+{% extends 'dashboardBase/base.html' %}
+{% load form_tags %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-10 px-4">
+    <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="bg-blue-600 text-white px-6 py-4">
+            <h4 class="text-xl font-semibold flex items-center gap-2">
+                <i class="fas fa-user-edit"></i> Update Profile
+            </h4>
+        </div>
+        <div class="p-6">
+            <form method="POST" enctype="multipart/form-data" class="space-y-8">
+                {% csrf_token %}
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Personal Information Section -->
+                    <div>
+                        <h5 class="text-lg font-semibold border-b pb-2 mb-4">Personal Information</h5>
+
+                        <div class="mb-4">
+                            {{ form.first_name.label_tag }}
+                            {{ form.first_name|add_class:"input input-bordered w-full" }}
+                            {% if form.first_name.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.first_name.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.last_name.label_tag }}
+                            {{ form.last_name|add_class:"input input-bordered w-full" }}
+                            {% if form.last_name.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.last_name.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.email.label_tag }}
+                            {{ form.email|add_class:"input input-bordered w-full" }}
+                            {% if form.email.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.email.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.phone.label_tag }}
+                            {{ form.phone|add_class:"input input-bordered w-full" }}
+                            {% if form.phone.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.phone.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.date_of_birth.label_tag }}
+                            {{ form.date_of_birth|add_class:"input input-bordered w-full" }}
+                            {% if form.date_of_birth.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.date_of_birth.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.nic.label_tag }}
+                            {{ form.nic|add_class:"input input-bordered w-full bg-gray-100 cursor-not-allowed" }}
+                            <p class="text-sm text-gray-500 mt-1">NIC cannot be changed</p>
+                        </div>
+                    </div>
+
+                    <!-- Address Information Section -->
+                    <div>
+                        <h5 class="text-lg font-semibold border-b pb-2 mb-4">Address Information</h5>
+
+                        <div class="mb-4">
+                            {{ form.street_address.label_tag }}
+                            {{ form.street_address|add_class:"input input-bordered w-full" }}
+                            {% if form.street_address.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.street_address.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.city.label_tag }}
+                            {{ form.city|add_class:"input input-bordered w-full" }}
+                            {% if form.city.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.city.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.state.label_tag }}
+                            {{ form.state|add_class:"input input-bordered w-full" }}
+                            {% if form.state.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.state.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.zip_code.label_tag }}
+                            {{ form.zip_code|add_class:"input input-bordered w-full" }}
+                            {% if form.zip_code.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.zip_code.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.country.label_tag }}
+                            {{ form.country|add_class:"input input-bordered w-full" }}
+                            {% if form.country.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.country.errors }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Change Section -->
+                <div>
+                    <h5 class="text-lg font-semibold border-b pb-2 mb-4">Password Change</h5>
+                    <div class="bg-blue-50 border border-blue-300 text-blue-800 text-sm px-4 py-3 rounded mb-4">
+                        Leave these fields blank if you don't want to change your password.
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            {{ form.current_password.label_tag }}
+                            {{ form.current_password|add_class:"input input-bordered w-full" }}
+                            {% if form.current_password.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.current_password.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div>
+                            {{ form.new_password.label_tag }}
+                            {{ form.new_password|add_class:"input input-bordered w-full" }}
+                            {% if form.new_password.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.new_password.errors }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div>
+                            {{ form.confirm_password.label_tag }}
+                            {{ form.confirm_password|add_class:"input input-bordered w-full" }}
+                            {% if form.confirm_password.errors %}
+                                <p class="text-red-500 text-sm mt-1">{{ form.confirm_password.errors }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex items-center justify-start gap-4 pt-6">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow flex items-center gap-2">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a href="{% url 'view_profile' %}" class="border border-gray-300 hover:bg-gray-100 px-6 py-2 rounded-lg text-gray-700">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

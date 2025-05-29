@@ -1,0 +1,256 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyLoop - Register</title>
+    {% tailwind_css %}
+</head>
+<body>
+  <header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="/core/home/" class="-m-1.5 p-1.5">
+          <span class="sr-only">MoneyLoop</span>
+          <img class="h-auto w-auto" src="{% static 'images/logo.png' %}" alt="moneyloop">
+        </a>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="/core/home/" class="text-sm/6 font-semibold text-gray-900">Home</a>
+        <a href="/core/how_it_works/" class="text-sm/6 font-semibold text-gray-900">How it Works</a>
+        <a href="/core/features/" class="text-sm/6 font-semibold text-gray-900">Features</a>
+        <a href="/core/about_us/" class="text-sm/6 font-semibold text-gray-900">About us</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="/core/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </nav>
+  </header>
+  <br><br><br><br><br><br>
+
+  <form class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-sm" method="post" novalidate>
+    {% csrf_token %}
+    <div class="space-y-12">
+      <!-- Profile Section -->
+      <div class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-xl font-semibold text-gray-900">Profile</h2>
+        <p class="mt-1 text-sm text-gray-600">Your name will be displayed publicly.</p>
+
+        <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <!-- Username Field -->
+          <div class="sm:col-span-4">
+            <label for="username" class="block text-sm font-medium text-gray-900">Username</label>
+            <div class="mt-2">
+              <div class="flex items-center rounded-md shadow-sm border border-gray-300 focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600 overflow-hidden">
+                <div class="shrink-0 px-3 py-2 text-gray-500 bg-gray-50 border-r border-gray-300 text-sm">moneyloop.com/</div>
+                {{ form.username }}
+              </div>
+              {% if form.username.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.username.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="sm:col-span-4">
+            <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
+            <div class="mt-2">
+              {{ form.password }}
+              {% if form.password.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.password.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Confirm Password Field -->
+          <div class="sm:col-span-4">
+            <label for="confirm_password" class="block text-sm font-medium text-gray-900">Confirm Password</label>
+            <div class="mt-2">
+              {{ form.confirm_password }}
+              {% if form.confirm_password.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.confirm_password.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Information Section -->
+      <div class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-xl font-semibold text-gray-900">Personal Information</h2>
+        <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <!-- First Name Field -->
+          <div class="sm:col-span-3">
+            <label for="first_name" class="block text-sm font-medium text-gray-900">First name</label>
+            <div class="mt-2">
+              {{ form.first_name }}
+              {% if form.first_name.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.first_name.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Last Name Field -->
+          <div class="sm:col-span-3">
+            <label for="last_name" class="block text-sm font-medium text-gray-900">Last name</label>
+            <div class="mt-2">
+              {{ form.last_name }}
+              {% if form.last_name.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.last_name.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Email Field -->
+          <div class="sm:col-span-4">
+            <label for="email" class="block text-sm font-medium text-gray-900">Email address</label>
+            <div class="mt-2">
+              {{ form.email }}
+              {% if form.email.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.email.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- NIC Field -->
+          <div class="sm:col-span-4">
+            <label for="nic" class="block text-sm font-medium text-gray-900">NIC</label>
+            <div class="mt-2">
+              {{ form.nic }}
+              {% if form.nic.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.nic.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Date of Birth Field -->
+          <div class="sm:col-span-3">
+            <label for="dob" class="block text-sm font-medium text-gray-900">Date of Birth</label>
+            <div class="mt-2">
+              {{ form.date_of_birth }}
+              {% if form.date_of_birth.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.date_of_birth.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Phone Field -->
+          <div class="sm:col-span-3">
+            <label for="phone" class="block text-sm font-medium text-gray-900">Phone</label>
+            <div class="mt-2">
+              {{ form.phone }}
+              {% if form.phone.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.phone.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Country Field -->
+          <div class="sm:col-span-3">
+            <label for="country" class="block text-sm font-medium text-gray-900">Country</label>
+            <div class="mt-2">
+              {{ form.country }}
+              {% if form.country.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.country.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Street Address Field -->
+          <div class="col-span-full">
+            <label for="street_address" class="block text-sm font-medium text-gray-900">Street address</label>
+            <div class="mt-2">
+              {{ form.street_address }}
+              {% if form.street_address.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.street_address.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- City Field -->
+          <div class="sm:col-span-2">
+            <label for="city" class="block text-sm font-medium text-gray-900">City</label>
+            <div class="mt-2">
+              {{ form.city }}
+              {% if form.city.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.city.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- State/Province Field -->
+          <div class="sm:col-span-2">
+            <label for="region" class="block text-sm font-medium text-gray-900">State / Province</label>
+            <div class="mt-2">
+              {{ form.state }}
+              {% if form.state.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.state.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- ZIP/Postal Code Field -->
+          <div class="sm:col-span-2">
+            <label for="zip_code" class="block text-sm font-medium text-gray-900">ZIP / Postal code</label>
+            <div class="mt-2">
+              {{ form.zip_code }}
+              {% if form.zip_code.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.zip_code.errors|join:", " }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role Section -->
+      <div class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-xl font-semibold text-gray-900">Your Role</h2>
+        <p class="mt-1 text-sm text-gray-600">What role are you going to take?</p>
+        <ul>
+          <li class="mt-1 text-gray-600">User: You can join groups and contribute.</li>
+          <li class="mt-1 text-gray-600">Admin: You can create groups, invite others to groups, and contribute.</li>
+        </ul>
+
+        <div>
+          <fieldset>
+            <div class="mt-6 space-y-6">
+              <div class="flex items-center gap-x-3">
+                {{ form.role }}
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <button type="button" class="text-sm font-semibold text-gray-900 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 px-3 py-2 rounded-md">
+        Cancel
+      </button>
+      <button type="submit" class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 transition-colors">
+        Save
+      </button>
+    </div>
+  </form>
+
+  <!-- JavaScript for Password Matching -->
+  <script>
+
+      {% for message in messages %}
+            alert('{{ message|escapejs }}');
+      {% endfor %}
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+      const password = document.querySelector('#id_password').value;
+      const confirmPassword = document.querySelector('#id_confirm_password').value;
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        alert('Passwords do not match!');
+      }
+    });
+  </script>
+</body>
+</html>

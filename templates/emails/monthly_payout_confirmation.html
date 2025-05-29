@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monthly Payout Notification</title>
+</head>
+<body>
+  <p>Dear {{ recipient.username }},</p>
+  <p>Congratulations! You have received a payout from your group.</p>
+  <p><strong>Group Name:</strong> {{ group_name }}</p>
+  <p><strong>Payout Amount:</strong> ${{ amount }}</p>
+  <p><strong>Payout Date:</strong> {{ payout_date }}</p>
+  <p><strong>Transaction Reference:</strong> {{ payment_reference }}</p>
+  <p>Thank you for your participation and continued commitment to your group.</p>
+  <p>Best regards,<br/>-MoneyLoop Team</p>
+</body>
+</html>
+

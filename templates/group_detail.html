@@ -1,0 +1,70 @@
+{% extends 'dashboardBase/base.html' %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 py-8">
+    <div class="bg-white shadow-lg rounded-2xl p-6 space-y-8">
+        <!-- Group Title -->
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">{{ group.name }}</h1>
+        </div>
+
+        <!-- Members List -->
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">Members in this Group</h2>
+            {% if group.members.all %}
+                <ol class="list-decimal pl-6 text-gray-600 space-y-1">
+                    {% for member in group.members.all %}
+                        <li>{{ member }}</li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p class="text-gray-500">No members found.</p>
+            {% endif %}
+        </div>
+
+        <!-- Transactions List -->
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">Transactions</h2>
+            {% if transactions %}
+                <ol class="list-disc pl-6 text-gray-600 space-y-1">
+                    {% for transaction in transactions %}
+                        <li>{{ transaction }}</li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p class="text-gray-500">No transactions yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Contributions List -->
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">Contributions</h2>
+            {% if contributions %}
+                <ol class="list-disc pl-6 text-gray-600 space-y-1">
+                    {% for contribution in contributions %}
+                        <li>{{ contribution }}</li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p class="text-gray-500">No contributions yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Group Status -->
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">Group Status</h2>
+            {% if group.is_active %}
+                <p class="text-green-600 font-semibold">Active</p>
+                <div class="mt-4">
+                    <a href="{% url 'make_contribution' group.id %}"
+                       class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-5 py-2 rounded-md transition">
+                        Make Contribution
+                    </a>
+                </div>
+            {% else %}
+                <p class="text-red-600 font-semibold">Not Active</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

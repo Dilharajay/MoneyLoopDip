@@ -1,0 +1,19 @@
+{% extends 'dashboardBase/userDashBoardBase.html' %}
+{% block content %}
+      <!-- Welcome Section -->
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+        <h2 class="text-xl font-semibold text-gray-900">Your Groups</h2>
+        <p class="mt-2 text-sm text-gray-600">You can see your groups here.</p>
+      </div>
+
+      <!-- groups show here -->
+    {% for group in member_groups %}
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-2">{{ group }}</h2>
+          <div class="mt-6">
+              <a href="{% url 'make_contribution' group.id %}" class="rounded-md bg-indigo-600 mt-20 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Make Contribution</a>
+              <a href="{% url 'group_detail' group.id %}" class="rounded-md bg-indigo-600 mt-20 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Group Detail</a>
+          </div>
+      </div>
+    {% endfor %}
+{% endblock %}

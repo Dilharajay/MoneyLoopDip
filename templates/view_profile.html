@@ -1,0 +1,96 @@
+{% extends 'dashboardBase/base.html' %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex items-center justify-between">
+            <h2 class="text-white text-2xl font-semibold">My Profile</h2>
+            <a href="#" class="bg-white text-blue-700 px-4 py-1 text-sm rounded-md shadow hover:bg-gray-100 transition">
+                <i class="fas fa-edit mr-1"></i>Edit Profile
+            </a>
+        </div>
+        <div class="px-6 py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Personal Info -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4 flex items-center gap-2">
+                        <i class="fas fa-user-circle text-blue-500"></i> Personal Information
+                    </h3>
+                    <div class="space-y-4 text-gray-700">
+                        <div>
+                            <p class="font-medium">Full Name:</p>
+                            <p>{{ user.get_full_name }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Email:</p>
+                            <p>{{ user.email }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Phone:</p>
+                            <p>{{ user.phone|default:"Not provided" }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Date of Birth:</p>
+                            <p>{{ user.date_of_birth|date:"F d, Y"|default:"Not provided" }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">NIC:</p>
+                            <p>{{ user.nic }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Info -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4 flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt text-blue-500"></i> Address Information
+                    </h3>
+                    <div class="space-y-4 text-gray-700">
+                        <div>
+                            <p class="font-medium">Address:</p>
+                            <p>{{ user.street_address|default:"Not provided" }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">City:</p>
+                            <p>{{ user.city|default:"Not provided" }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">State/Province:</p>
+                            <p>{{ user.state|default:"Not provided" }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">ZIP/Postal Code:</p>
+                            <p>{{ user.zip_code|default:"Not provided" }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Country:</p>
+                            <p>{{ user.get_country_display|default:"Not provided" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Membership Info -->
+            <div class="mt-10 border-t pt-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <i class="fas fa-users text-blue-500"></i> Membership Information
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-700">
+                    <div>
+                        <p class="font-medium">Account Type:</p>
+                        <p>{{ user.get_role_display }}</p>
+                    </div>
+                    <div>
+                        <p class="font-medium">Member Since:</p>
+                        <p>{{ user.date_joined|date:"F d, Y" }}</p>
+                    </div>
+                    <div>
+                        <p class="font-medium">Last Login:</p>
+                        <p>{{ user.last_login|date:"F d, Y h:i A"|default:"Never" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

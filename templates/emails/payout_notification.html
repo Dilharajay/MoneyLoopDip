@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>Hello,</p>
+
+    <p>You have received a payout of <strong>${{ amount }}</strong> from <strong>{{ group_name }}</strong>.</p>
+
+    <p>
+        <strong>Transaction Reference:</strong> {{ transaction_reference }}<br>
+        <strong>Date:</strong> {{ date|date:"F j, Y" }}
+    </p>
+
+    <p>- The MoneyLoop Team</p>
+</body>
+</html>

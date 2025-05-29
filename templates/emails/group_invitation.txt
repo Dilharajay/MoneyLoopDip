@@ -1,0 +1,7 @@
+Hello,
+
+You have been invited by {{ inviter.username }} to join the group "{{ group.group_name }}".
+
+Accept your invitation: {{ accept_url }}
+
+If you did not expect this invitation, you can ignore this email.

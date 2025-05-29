@@ -1,0 +1,10 @@
+Hello,
+
+Your contribution of ${{ amount }} to {{ group_name }} has been successfully processed.
+
+Payment Reference: {{ payment_reference }}
+Date: {{ date }}
+
+Thank you for your contribution!
+
+- The MoneyLoop Team

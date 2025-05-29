@@ -1,0 +1,35 @@
+{% extends 'dashboardBase/adminDashBoardBase.html' %}
+{% load static tailwind_tags %}
+  {% block content %}
+      <!-- Welcome Section -->
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+        <h2 class="text-xl font-semibold text-gray-900">Welcome, {{ user.username }}!</h2>
+        <p class="mt-2 text-sm text-gray-600">You are now logged in as an admin and can manage the platform.</p>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Recent Contributions</h2>
+        <div class="space-y-4">
+          {% for contribution in contributions %}
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-gray-600">{{ contribution }}</p>
+              <p class="text-sm text-gray-600">${{ contribution.amount }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Notifications</h2>
+        <div class="space-y-4">
+          {% for notification in notifications %}
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-gray-600">{{ notification.message }}</p>
+              <p class="text-sm text-gray-600">{{ notification.created_at }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+{% endblock %}
