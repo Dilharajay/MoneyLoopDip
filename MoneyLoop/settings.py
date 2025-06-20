@@ -95,7 +95,7 @@ MIDDLEWARE = [
     # 'core.middleware.CustomerMiddleware',
 ]
 
-LOGOUT_REDIRECT_URL = '/core/home'  # Redirect to the homepage after logout
+LOGOUT_REDIRECT_URL = '/home'  # Redirect to the homepage after logout
 
 ROOT_URLCONF = 'MoneyLoop.urls'
 

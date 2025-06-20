@@ -1,35 +1,5 @@
-{% load static tailwind_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoneyLoop</title>
-    {% tailwind_css %}
-</head>
-<body>
-
-<header class="absolute inset-x-0 top-0 z-50">
-    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-      <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">MoneyLoop</span>
-          <img class="h-auto w-auto" src="{% static 'images/logo.png' %}" alt="moneyloop">
-        </a>
-      </div>
-      <div class="hidden lg:flex lg:gap-x-12">
-        <a href="/core/home/" class="text-sm/6 font-semibold text-gray-900">Home</a>
-        <a href="/core/how_it_works/" class="text-sm/6 font-semibold text-gray-900">How it Works</a>
-        <a href="/core/features" class="text-sm/6 font-semibold text-gray-900">Features</a>
-        <a href="/core/about_us" class="text-sm/6 font-semibold text-gray-900">About us</a>
-      </div>
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="/core/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </nav>
-</header>
-
+{% extends 'base_templates/home_base.html' %}
+{% block content %}
     <div class="bg-white py-24 sm:py-32">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:text-center">
@@ -87,5 +57,4 @@
       </div>
     </div>
 
-</body>
-</html>
+{% endblock %}

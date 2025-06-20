@@ -3,254 +3,400 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoneyLoop - Register</title>
     {% tailwind_css %}
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
-<body>
-  <header class="absolute inset-x-0 top-0 z-50">
-    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-      <div class="flex lg:flex-1">
-        <a href="/core/home/" class="-m-1.5 p-1.5">
-          <span class="sr-only">MoneyLoop</span>
-          <img class="h-auto w-auto" src="{% static 'images/logo.png' %}" alt="moneyloop">
-        </a>
-      </div>
-      <div class="hidden lg:flex lg:gap-x-12">
-        <a href="/core/home/" class="text-sm/6 font-semibold text-gray-900">Home</a>
-        <a href="/core/how_it_works/" class="text-sm/6 font-semibold text-gray-900">How it Works</a>
-        <a href="/core/features/" class="text-sm/6 font-semibold text-gray-900">Features</a>
-        <a href="/core/about_us/" class="text-sm/6 font-semibold text-gray-900">About us</a>
-      </div>
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="/core/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-      </div>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+    <nav class="mx-auto max-w-7xl px-6 py-4 lg:px-8">
+        <div class="flex items-center justify-between">
+            <div class="flex-shrink-0">
+                <a href="{% url 'home' %}" class="flex items-center">
+                    <img class="h-8 w-auto" src="{% static 'images/logo.png' %}" alt="MoneyLoop">
+                </a>
+            </div>
+            <div class="hidden md:flex md:items-center md:space-x-8">
+                <a href="{% url 'home' %}" class="text-sm font-medium text-gray-700 hover:text-indigo-600">Home</a>
+                <a href="{% url 'how_it_works' %}" class="text-sm font-medium text-gray-700 hover:text-indigo-600">How
+                    it Works</a>
+                <a href="{% url 'features' %}"
+                   class="text-sm font-medium text-gray-700 hover:text-indigo-600">Features</a>
+                <a href="{% url 'about_us' %}" class="text-sm font-medium text-gray-700 hover:text-indigo-600">About
+                    Us</a>
+            </div>
+            <div class="hidden md:block">
+                <a href="{% url 'login' %}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+                    Log in <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        </div>
     </nav>
-  </header>
-  <br><br><br><br><br><br>
+</header>
 
-  <form class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-sm" method="post" novalidate>
-    {% csrf_token %}
-    <div class="space-y-12">
-      <!-- Profile Section -->
-      <div class="border-b border-gray-900/10 pb-12">
-        <h2 class="text-xl font-semibold text-gray-900">Profile</h2>
-        <p class="mt-1 text-sm text-gray-600">Your name will be displayed publicly.</p>
-
-        <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <!-- Username Field -->
-          <div class="sm:col-span-4">
-            <label for="username" class="block text-sm font-medium text-gray-900">Username</label>
-            <div class="mt-2">
-              <div class="flex items-center rounded-md shadow-sm border border-gray-300 focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600 overflow-hidden">
-                <div class="shrink-0 px-3 py-2 text-gray-500 bg-gray-50 border-r border-gray-300 text-sm">moneyloop.com/</div>
-                {{ form.username }}
-              </div>
-              {% if form.username.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.username.errors|join:", " }}</p>
-              {% endif %}
+<!-- Main Content -->
+<main class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <!-- Form Header -->
+            <div class="bg-indigo-700 px-6 py-4">
+                <h1 class="text-2xl font-bold">Create Your Account</h1>
+                <p class="mt-1 text-indigo-200">Join MoneyLoop to start your savings journey.</p>
+                <p class="mt-1 text-indigo-200">By using the MoneyLoop platform, I give informed, explicit, and freely
+                    given consent to: Collect, store, and process my personal and financial data.
+                </p>
             </div>
-          </div>
 
-          <!-- Password Field -->
-          <div class="sm:col-span-4">
-            <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
-            <div class="mt-2">
-              {{ form.password }}
-              {% if form.password.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.password.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
+            <!-- Registration Form -->
+            <form class="px-6 py-8 space-y-8" method="post" novalidate>
+                {% csrf_token %}
 
-          <!-- Confirm Password Field -->
-          <div class="sm:col-span-4">
-            <label for="confirm_password" class="block text-sm font-medium text-gray-900">Confirm Password</label>
-            <div class="mt-2">
-              {{ form.confirm_password }}
-              {% if form.confirm_password.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.confirm_password.errors|join:", " }}</p>
-              {% endif %}
+                <!-- Profile Section -->
+                <div class="space-y-6 mt-6">
+                    <h2 class="text-lg font-medium text-gray-900">Profile Information</h2>
+
+                    <!-- Username -->
+                    <div>
+                        <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                                <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                    moneyloop.com/
+                                </span>
+                            <input type="text" name="username" id="id_username" required
+                                   class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                   placeholder="yourusername">
+                        </div>
+                        {% if form.username.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.username.errors|join:", " }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password Fields -->
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="id_password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <div class="mt-2">
+                                <input type="password" name="password" id="id_password" required
+                                       class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                       placeholder="••••••••">
+                            </div>
+                            {% if form.password.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.password.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="id_confirm_password" class="block text-sm font-medium mt-2 text-gray-700">Confirm
+                                Password</label>
+                            <div class="mt-1">
+                                <input type="password" name="confirm_password" id="id_confirm_password" required
+                                       class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                       placeholder="••••••••">
+                            </div>
+                            {% if form.confirm_password.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.confirm_password.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information Section -->
+                <div class="space-y-6 mt-6">
+                    <h2 class="text-lg font-medium text-gray-900">Personal Information</h2>
+
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <!-- First Name -->
+                        <div>
+                            <label for="id_first_name" class="block text-sm font-medium text-gray-700">First
+                                Name</label>
+                            <div class="mt-1">
+                                {{ form.first_name }}
+                            </div>
+                            {% if form.first_name.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.first_name.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Last Name -->
+                        <div>
+                            <label for="id_last_name" class="block text-sm mt-2 font-medium text-gray-700">Last
+                                Name</label>
+                            <div class="mt-1">
+                                {{ form.last_name }}
+                            </div>
+                            {% if form.last_name.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.last_name.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="id_email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <div class="mt-1">
+                            {{ form.email }}
+                        </div>
+                        {% if form.email.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.email.errors|join:", " }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- NIC -->
+                    <div>
+                        <label for="id_nic" class="block text-sm font-medium text-gray-700">National ID (NIC)</label>
+                        <div class="mt-1">
+                            {{ form.nic }}
+                        </div>
+                        {% if form.nic.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.nic.errors|join:", " }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <!-- Date of Birth -->
+                        <div>
+                            <label for="id_date_of_birth" class="block text-sm font-medium text-gray-700">Date of
+                                Birth</label>
+                            <div class="mt-1">
+                                {{ form.date_of_birth }}
+                            </div>
+                            {% if form.date_of_birth.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.date_of_birth.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Phone -->
+                        <div>
+                            <label for="id_phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <div class="mt-1">
+                                {{ form.phone }}
+                            </div>
+                            {% if form.phone.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.phone.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Section -->
+                <div class="space-y-6">
+                    <h2 class="text-lg font-medium text-gray-900">Address Information</h2>
+
+                    <!-- Country -->
+                    <div>
+                        <label for="id_country" class="block text-sm font-medium text-gray-700">Country</label>
+                        <div class="mt-1">
+                            {{ form.country }}
+                        </div>
+                        {% if form.country.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.country.errors|join:", " }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Street Address -->
+                    <div>
+                        <label for="id_street_address" class="block text-sm font-medium text-gray-700">Street
+                            Address</label>
+                        <div class="mt-1">
+                            {{ form.street_address }}
+                        </div>
+                        {% if form.street_address.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.street_address.errors|join:", " }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                        <!-- City -->
+                        <div>
+                            <label for="id_city" class="block text-sm font-medium text-gray-700">City</label>
+                            <div class="mt-1">
+                                {{ form.city }}
+                            </div>
+                            {% if form.city.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.city.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- State -->
+                        <div>
+                            <label for="id_state" class="block text-sm font-medium text-gray-700">State/Province</label>
+                            <div class="mt-1">
+                                {{ form.state }}
+                            </div>
+                            {% if form.state.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.state.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- ZIP Code -->
+                        <div>
+                            <label for="id_zip_code" class="block text-sm font-medium text-gray-700">ZIP/Postal
+                                Code</label>
+                            <div class="mt-1">
+                                {{ form.zip_code }}
+                            </div>
+                            {% if form.zip_code.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.zip_code.errors|join:", " }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role Selection -->
+                <div class="space-y-4">
+                    <h2 class="text-lg font-medium text-gray-900 mt-2">Your Role</h2>
+                    <p class="text-sm text-gray-600 mb-4">Choose how you want to use MoneyLoop:</p>
+
+                    <div class="flex items-center space-x-10">
+                        <div class="flex items-center space-x-4">
+                            <input id="role_user" name="role" type="radio" value="U" checked
+                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                            <label for="role_user" class="ml-2 block text-sm font-medium text-gray-700">
+                                User - Join groups and contribute
+                            </label>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <input id="role_admin" name="role" type="radio" value="A"
+                                   class="h-4 w-4 text-indigo-600 ml-3 focus:ring-indigo-500 border-gray-300">
+                            <label for="role_admin" class="ml-2 block text-sm font-medium text-gray-700">
+                                Admin - Create and manage groups
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="space-y-4">
+                    <h2 class="text-lg font-medium text-gray-900 mt-3">Terms & Conditions</h2>
+                    <p class="text-sm text-gray-600">
+                        By creating an account, you agree to MoneyLoop's <a href="{% url 'legal-documents' %}"
+                                                                            class="text-indigo-600 hover:text-indigo-500">Terms
+                        of Service</a> and <a href="{% url 'legal-documents' %}"
+                                              class="text-indigo-600 hover:text-indigo-500">Privacy Policy</a>.
+                    </p>
+
+                    <div class="space-y-2">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="terms" name="terms" type="checkbox" required
+                                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="font-medium text-gray-700">I agree to the terms and
+                                    conditions</label>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="notifications" name="notifications" type="checkbox"
+                                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="notifications" class="font-medium text-gray-700">I want to receive
+                                    notifications (optional)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex justify-end space-x-4">
+                    <a href="{% url 'home' %}"
+                       class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Cancel
+                    </a>
+                    <button type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Register
+                    </button>
+                </div>
+            </form>
+
+            <!-- Already have an account? -->
+            <div class="bg-gray-50 px-6 py-4 mt-6 border-t border-gray-200">
+                <p class="text-sm text-center text-gray-600 mt-6">
+                    Already have an account? <a href="{% url 'login' %}"
+                                                class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+                </p>
             </div>
-          </div>
         </div>
-      </div>
-
-      <!-- Personal Information Section -->
-      <div class="border-b border-gray-900/10 pb-12">
-        <h2 class="text-xl font-semibold text-gray-900">Personal Information</h2>
-        <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <!-- First Name Field -->
-          <div class="sm:col-span-3">
-            <label for="first_name" class="block text-sm font-medium text-gray-900">First name</label>
-            <div class="mt-2">
-              {{ form.first_name }}
-              {% if form.first_name.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.first_name.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- Last Name Field -->
-          <div class="sm:col-span-3">
-            <label for="last_name" class="block text-sm font-medium text-gray-900">Last name</label>
-            <div class="mt-2">
-              {{ form.last_name }}
-              {% if form.last_name.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.last_name.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- Email Field -->
-          <div class="sm:col-span-4">
-            <label for="email" class="block text-sm font-medium text-gray-900">Email address</label>
-            <div class="mt-2">
-              {{ form.email }}
-              {% if form.email.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.email.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- NIC Field -->
-          <div class="sm:col-span-4">
-            <label for="nic" class="block text-sm font-medium text-gray-900">NIC</label>
-            <div class="mt-2">
-              {{ form.nic }}
-              {% if form.nic.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.nic.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- Date of Birth Field -->
-          <div class="sm:col-span-3">
-            <label for="dob" class="block text-sm font-medium text-gray-900">Date of Birth</label>
-            <div class="mt-2">
-              {{ form.date_of_birth }}
-              {% if form.date_of_birth.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.date_of_birth.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- Phone Field -->
-          <div class="sm:col-span-3">
-            <label for="phone" class="block text-sm font-medium text-gray-900">Phone</label>
-            <div class="mt-2">
-              {{ form.phone }}
-              {% if form.phone.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.phone.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- Country Field -->
-          <div class="sm:col-span-3">
-            <label for="country" class="block text-sm font-medium text-gray-900">Country</label>
-            <div class="mt-2">
-              {{ form.country }}
-              {% if form.country.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.country.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- Street Address Field -->
-          <div class="col-span-full">
-            <label for="street_address" class="block text-sm font-medium text-gray-900">Street address</label>
-            <div class="mt-2">
-              {{ form.street_address }}
-              {% if form.street_address.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.street_address.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- City Field -->
-          <div class="sm:col-span-2">
-            <label for="city" class="block text-sm font-medium text-gray-900">City</label>
-            <div class="mt-2">
-              {{ form.city }}
-              {% if form.city.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.city.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- State/Province Field -->
-          <div class="sm:col-span-2">
-            <label for="region" class="block text-sm font-medium text-gray-900">State / Province</label>
-            <div class="mt-2">
-              {{ form.state }}
-              {% if form.state.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.state.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- ZIP/Postal Code Field -->
-          <div class="sm:col-span-2">
-            <label for="zip_code" class="block text-sm font-medium text-gray-900">ZIP / Postal code</label>
-            <div class="mt-2">
-              {{ form.zip_code }}
-              {% if form.zip_code.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.zip_code.errors|join:", " }}</p>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Role Section -->
-      <div class="border-b border-gray-900/10 pb-12">
-        <h2 class="text-xl font-semibold text-gray-900">Your Role</h2>
-        <p class="mt-1 text-sm text-gray-600">What role are you going to take?</p>
-        <ul>
-          <li class="mt-1 text-gray-600">User: You can join groups and contribute.</li>
-          <li class="mt-1 text-gray-600">Admin: You can create groups, invite others to groups, and contribute.</li>
-        </ul>
-
-        <div>
-          <fieldset>
-            <div class="mt-6 space-y-6">
-              <div class="flex items-center gap-x-3">
-                {{ form.role }}
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </div>
     </div>
+</main>
 
-    <!-- Form Actions -->
-    <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="button" class="text-sm font-semibold text-gray-900 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 px-3 py-2 rounded-md">
-        Cancel
-      </button>
-      <button type="submit" class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 transition-colors">
-        Save
-      </button>
+<!-- Error Messages -->
+{% if messages %}
+    <div class="fixed bottom-4 right-4 space-y-2">
+        {% for message in messages %}
+            <div class="bg-{% if message.tags == 'error' %}red{% else %}green{% endif %}-500 text-white px-4 py-2 rounded-md shadow-lg">
+                {{ message }}
+            </div>
+        {% endfor %}
     </div>
-  </form>
+{% endif %}
 
-  <!-- JavaScript for Password Matching -->
-  <script>
-
-      {% for message in messages %}
-            alert('{{ message|escapejs }}');
-      {% endfor %}
-
+<!-- JavaScript -->
+<script>
+    // Password match validation
     document.querySelector('form').addEventListener('submit', function (e) {
-      const password = document.querySelector('#id_password').value;
-      const confirmPassword = document.querySelector('#id_confirm_password').value;
-      if (password !== confirmPassword) {
-        e.preventDefault();
-        alert('Passwords do not match!');
-      }
+        const password = document.getElementById('id_password').value;
+        const confirmPassword = document.getElementById('id_confirm_password').value;
+
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert('Passwords do not match!');
+            document.getElementById('id_confirm_password').focus();
+        }
     });
-  </script>
+
+    // Auto-format NIC input
+    document.getElementById('id_nic').addEventListener('input', function (e) {
+        let value = e.target.value.toUpperCase();
+        if (value.length === 9 && !value.endsWith('V') && !value.endsWith('X')) {
+            value += 'V';
+        }
+        e.target.value = value;
+    });
+</script>
+
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function showNotification(title, message, type) {
+        Swal.fire({
+            title: title,
+            text: message,
+            icon: type,
+            confirmButtonText: 'OK',
+            timer: type === 'error' ? null : 3000,  // Errors stay until dismissed
+            timerProgressBar: type !== 'error',
+            position: 'top-end',
+            showConfirmButton: type === 'error',
+            toast: true,
+            background: type === 'error' ? '#ff4444' :
+                type === 'success' ? '#00C851' :
+                    type === 'warning' ? '#ffbb33' : '#33b5e5',
+            color: '#fff'
+        });
+    }
+
+    // Automatically show Django messages
+    $(document).ready(function () {
+        {% if messages %}
+            {% for message in messages %}
+                showNotification(
+                    '{{ message.tags|title }}',
+                    '{{ message|escapejs }}',
+                    '{{ message.tags }}'
+                );
+            {% endfor %}
+        {% endif %}
+    });
+</script>
 </body>
 </html>

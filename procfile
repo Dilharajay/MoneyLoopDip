@@ -1,0 +1,3 @@
+web: gunicorn myproject.wsgi:application
+worker: celery -A myproject worker --loglevel=info
+beat: celery -A myproject beat --loglevel=info

@@ -1,0 +1,292 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyLoop - Legal Documents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="white font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-8 text-center content-center">
+                <img src="{% static 'images/logo.png' %}" class="place-content-center">
+            <p class="text-gray-600 content-start">Legal Documents</p>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="flex border-b border-gray-200 mb-8">
+            <button id="privacy-tab" class="py-2 px-4 font-medium text-indigo-600 border-b-2 border-indigo-600">Privacy Policy</button>
+            <button id="terms-tab" class="py-2 px-4 font-medium text-gray-500 hover:text-indigo-600">Terms & Conditions</button>
+        </div>
+
+        <!-- Privacy Policy Content -->
+        <div id="privacy-content" class="legal-content">
+            <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Privacy Policy</h2>
+                <p class="text-gray-600 mb-6">Last Updated: June 1, 2025</p>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">1. Introduction</h3>
+                    <p class="text-gray-700 mb-4">
+                        MoneyLoop ("we", "our", or "the platform") is committed to protecting the privacy and personal data of all users accessing our digital ROSCA management service. This Privacy Policy outlines how we collect, use, store, disclose, and safeguard your information in accordance with the Information and Communication Technology Act No. 27 of 2003, Computer Crimes Act No. 24 of 2007, Electronic Transactions Act No. 19 of 2006, and Central Bank guidelines on digital financial services in Sri Lanka.
+                    </p>
+                    <p class="text-gray-700">
+                        By using MoneyLoop, you consent to the data practices described in this policy.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">2. Data We Collect</h3>
+                    <p class="text-gray-700 mb-4">
+                        We collect the following types of personal and financial data during registration and system use:
+                    </p>
+
+                    <h4 class="font-medium text-gray-800 mb-2">2.1 Personally Identifiable Information (PII)</h4>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 space-y-1">
+                        <li>Full Name</li>
+                        <li>NIC Number</li>
+                        <li>Mobile Number</li>
+                        <li>Email Address</li>
+                        <li>Residential Address</li>
+                        <li>Date of Birth</li>
+                        <li>User Role (Admin or Member)</li>
+                    </ul>
+
+                    <h4 class="font-medium text-gray-800 mb-2">2.2 Financial & Transactional Data</h4>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 space-y-1">
+                        <li>Contribution amounts and timestamps</li>
+                        <li>Transaction history and disbursement logs</li>
+                        <li>Payment frequency and group configuration</li>
+                    </ul>
+
+                    <h4 class="font-medium text-gray-800 mb-2">2.3 Technical Information</h4>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>IP address</li>
+                        <li>Device and browser metadata</li>
+                        <li>Login timestamps</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">3. Purpose of Data Collection</h3>
+                    <p class="text-gray-700 mb-2">
+                        We collect and process your data to:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Create and manage user accounts</li>
+                        <li>Authenticate login sessions</li>
+                        <li>Facilitate contributions and disbursements</li>
+                        <li>Send automated reminders and notifications</li>
+                        <li>Generate analytics for admins and users</li>
+                        <li>Improve system performance and user experience</li>
+                        <li>Comply with legal and regulatory obligations</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">4. Data Sharing and Disclosure</h3>
+                    <p class="text-gray-700 mb-4">
+                        We do not sell or rent your personal data to any third party. Data may be disclosed only in the following cases:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>To internal administrators for service operation</li>
+                        <li>To regulatory authorities upon lawful request (e.g., Central Bank of Sri Lanka)</li>
+                        <li>To third-party service providers (e.g., cloud hosting or notification APIs), bound by confidentiality agreements</li>
+                        <li>In cases of fraud detection, dispute resolution, or legal compliance</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">5. Data Security</h3>
+                    <p class="text-gray-700 mb-2">
+                        We implement industry-standard security protocols to safeguard your information:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Passwords are hashed using strong encryption algorithms</li>
+                        <li>Role-based access controls restrict unauthorized data access</li>
+                        <li>Data backups are regularly maintained in secure environments</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">6. Data Retention</h3>
+                    <p class="text-gray-700">
+                        Your data will be retained only for as long as is necessary to fulfill the purpose for which it was collected. We may retain data for an extended period as required by regulatory bodies or for audit purposes. Upon request, your account and data may be permanently deleted unless restricted by legal obligation.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">7. User Rights</h3>
+                    <p class="text-gray-700 mb-2">
+                        In accordance with international privacy norms and local regulations:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>You have the right to access, update, or correct your personal data</li>
+                        <li>You can request account deactivation or data deletion</li>
+                        <li>You may opt out of marketing emails and non-essential communications</li>
+                        <li>Users can review privacy preferences via their account settings</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">8. Cookies and Tracking</h3>
+                    <p class="text-gray-700">
+                        MoneyLoop may use session cookies for authentication and maintaining user sessions. No third-party advertising or tracking cookies are used. You may control cookie behavior through your browser settings.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">9. Children's Privacy</h3>
+                    <p class="text-gray-700">
+                        Our platform is not intended for users under the age of 18. We do not knowingly collect personal data from minors. If a child's data is identified, it will be deleted immediately.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">10. Policy Updates</h3>
+                    <p class="text-gray-700">
+                        This policy is subject to change based on legislative updates or system upgrades. Users will be notified via email or platform alerts of significant updates.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms and Conditions Content -->
+        <div id="terms-content" class="legal-content hidden">
+            <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Terms and Conditions</h2>
+                <p class="text-gray-600 mb-6">Last Updated: June 2, 2025</p>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">1. Introduction</h3>
+                    <p class="text-gray-700">
+                        These Terms and Conditions ("Terms") govern your access to and use of the MoneyLoop platform ("Service"), operated by MoneyLoop. By accessing or using the Service, you agree to be bound by these Terms and our Privacy Policy. If you do not agree, please refrain from using the Service.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">2. Eligibility</h3>
+                    <p class="text-gray-700 mb-2">
+                        To use MoneyLoop, you must:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Be a Sri Lankan citizen or legal resident.</li>
+                        <li>Be at least 18 years old.</li>
+                        <li>Possess a valid National Identity Card (NIC).</li>
+                        <li>Have a registered mobile number and email address.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">3. User Registration</h3>
+                    <p class="text-gray-700">
+                        Upon registration, you agree to provide accurate and complete information. You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">4. Services Provided</h3>
+                    <p class="text-gray-700 mb-2">
+                        MoneyLoop facilitates:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Creation and management of Rotating Savings and Credit Associations (ROSCAs).</li>
+                        <li>Contribution tracking and disbursement scheduling.</li>
+                        <li>Notifications and reminders for contributions and disbursements.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">5. User Obligations</h3>
+                    <p class="text-gray-700 mb-2">
+                        As a user, you agree to:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Use the Service only for lawful purposes.</li>
+                        <li>Not engage in fraudulent or deceptive practices.</li>
+                        <li>Comply with all applicable laws and regulations, including financial and data protection laws.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">6. Fees and Charges</h3>
+                    <p class="text-gray-700">
+                        MoneyLoop may charge service fees, which will be transparently communicated to users. All fees are subject to applicable taxes as per Sri Lankan law.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">7. Data Protection and Privacy</h3>
+                    <p class="text-gray-700">
+                        We are committed to protecting your personal data in accordance with the Personal Data Protection Act No. 9 of 2022. Please refer to our Privacy Policy for detailed information on data collection, use, and protection.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">8. Intellectual Property</h3>
+                    <p class="text-gray-700">
+                        All content, trademarks, and data on the MoneyLoop platform are the property of MoneyLoop or its licensors. Unauthorized use is prohibited.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">9. Limitation of Liability</h3>
+                    <p class="text-gray-700">
+                        MoneyLoop is provided on an "as is" basis. We do not guarantee uninterrupted or error-free service. To the extent permitted by law, we disclaim all warranties and shall not be liable for any damages arising from your use of the Service.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">10. Termination</h3>
+                    <p class="text-gray-700">
+                        We reserve the right to suspend or terminate your access to the Service at our discretion, without notice, for conduct that violates these Terms or is harmful to other users or the Service.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">11. Amendments</h3>
+                    <p class="text-gray-700">
+                        We may update these Terms from time to time. Continued use of the Service after changes indicates your acceptance of the new Terms.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">12. Governing Law</h3>
+                    <p class="text-gray-700">
+                        These Terms are governed by the laws of Sri Lanka. Any disputes arising shall be subject to the exclusive jurisdiction of the courts of Sri Lanka.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-12">
+            <p>© 2025 MoneyLoop. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.getElementById('privacy-tab').addEventListener('click', function() {
+            document.getElementById('privacy-content').classList.remove('hidden');
+            document.getElementById('terms-content').classList.add('hidden');
+            document.getElementById('privacy-tab').classList.add('text-indigo-600', 'border-b-2', 'border-indigo-600');
+            document.getElementById('privacy-tab').classList.remove('text-gray-500');
+            document.getElementById('terms-tab').classList.remove('text-indigo-600', 'border-b-2', 'border-indigo-600');
+            document.getElementById('terms-tab').classList.add('text-gray-500');
+        });
+
+        document.getElementById('terms-tab').addEventListener('click', function() {
+            document.getElementById('terms-content').classList.remove('hidden');
+            document.getElementById('privacy-content').classList.add('hidden');
+            document.getElementById('terms-tab').classList.add('text-indigo-600', 'border-b-2', 'border-indigo-600');
+            document.getElementById('terms-tab').classList.remove('text-gray-500');
+            document.getElementById('privacy-tab').classList.remove('text-indigo-600', 'border-b-2', 'border-indigo-600');
+            document.getElementById('privacy-tab').classList.add('text-gray-500');
+        });
+    </script>
+</body>
+</html>

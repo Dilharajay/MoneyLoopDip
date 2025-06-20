@@ -1,7 +1,10 @@
+from datetime import date
+
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.core.validators import MinLengthValidator, RegexValidator, MaxLengthValidator
 from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 from core.models import Customer, Group, Contribution
 
@@ -73,8 +76,17 @@ class RegistrationForm(forms.Form):
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
         if password and confirm_password and password != confirm_password:
-            raise forms.ValidationError("Passwords do not match.")
+            raise ValidationError("Passwords do not match.")
         return cleaned_data
+
+    def clean_date_of_birth(self):
+        dob = self.cleaned_data.get('date_of_birth')
+        if dob:
+            today = date.today()
+            age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+            if age < 18:
+                raise ValidationError("You must be at least 18 years old to register.")
+        return dob
 
 class AddGroupForm(forms.ModelForm):
     class Meta:

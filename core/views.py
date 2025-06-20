@@ -5,6 +5,7 @@ from datetime import timedelta
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import TemplateView
 from pyexpat.errors import messages
 from django.contrib import messages
 
@@ -24,6 +25,15 @@ from .tasks import dummy_task
 def home(request):
     return render(request, 'home.html')
 
+def about_us_view (request):
+    return render(request,'Errors/404.html')
+
+class LegalDocumentsView(TemplateView):
+    template_name = 'leagal/terms_and_conditions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 def login_view(request):
     if request.method == "POST":
@@ -58,7 +68,7 @@ def register_view(request):
             password = form.cleaned_data.get('password')
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
-            email = form.cleaned_data.get('email')
+            email = form.cleaned_data.get('email').lower().strip()
             nic = form.cleaned_data.get('nic')
             date_of_birth = form.cleaned_data.get('date_of_birth')
             phone = form.cleaned_data.get('phone')
@@ -66,6 +76,7 @@ def register_view(request):
             street_address = form.cleaned_data.get('street_address')
             city = form.cleaned_data.get('city')
             zip_code = form.cleaned_data.get('zip_code')
+            state = form.cleaned_data.get('state')
             role = form.cleaned_data.get('role')
 
             # Username/email validation
@@ -73,26 +84,33 @@ def register_view(request):
                 messages.error(request, "Username already exists.")
             elif Customer.objects.filter(email=email).exists():
                 messages.error(request, "Email already exists.")
+            elif Customer.objects.filter(nic=nic).exists():
+                messages.error(request, "NIC already exists.")
             else:
-                customer = Customer.objects.create_user(
-                    username=username,
-                    password=password,
-                    first_name=first_name,
-                    last_name=last_name,
-                    email=email,
-                    nic=nic,
-                    date_of_birth=date_of_birth,
-                    phone=phone,
-                    country=country,
-                    street_address=street_address,
-                    city=city,
-                    zip_code=zip_code,
-                    role=role
-                )
-                customer.save()
-                messages.success(request, "Registration successful.")
-                NotificationService.send_welcome_email(customer)
-                return redirect('login')
+                try:
+                    customer = Customer.objects.create_user(
+                        username=username,
+                        password=password,
+                        first_name=first_name,
+                        last_name=last_name,
+                        email=email,
+                        nic=nic,
+                        date_of_birth=date_of_birth,
+                        phone=phone,
+                        country=country,
+                        street_address=street_address,
+                        city=city,
+                        zip_code=zip_code,
+                        state=state,
+                        role=role
+                    )
+                    customer.save()
+                    messages.success(request, "Registration successful.")
+                    NotificationService.send_welcome_email(customer)
+                    return redirect('login')
+                except Exception as e:
+                    messages.error(request, f"An error occurred while registering str{e}. Please try again.")
+
     else:
         form = RegistrationForm()
 
